@@ -14,7 +14,8 @@ namespace BlazorSozluk.Infrastructure.Persistence.EntityConfigurations.EntryComm
 
             builder.HasOne(x => x.CreatedBy)
                 .WithMany(x => x.EntryComments)
-                .HasForeignKey(x => x.CreatedById);
+                .HasForeignKey(x => x.CreatedById)
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Entry)
                 .WithMany(x => x.EntryComments)
