@@ -1,4 +1,4 @@
-﻿using BlazorSozluk.Common.ViewModels.Enums;
+﻿using BlazorSozluk.Common.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
