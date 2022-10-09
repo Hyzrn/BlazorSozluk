@@ -1,5 +1,5 @@
 ﻿using BlazorSozluk.Api.Domain.Models;
-using BlazorSozluk.Common.Models.RequestModels;
+using BlazorSozluk.Common.Models.RequestModels.User;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +9,7 @@ namespace BlazorSozluk.Api.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IMediator mediator;
 
@@ -37,7 +37,7 @@ namespace BlazorSozluk.Api.WebApi.Controllers
 
 
         [HttpPost]
-        [Route("Login")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
             var res = await mediator.Send(command);
@@ -55,7 +55,7 @@ namespace BlazorSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Update")]
+        [Route("update")]
         //[Authorize]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
         {
@@ -64,26 +64,26 @@ namespace BlazorSozluk.Api.WebApi.Controllers
             return Ok(guid);
         }
 
-        //[HttpPost]
-        //[Route("Confirm")]
-        //public async Task<IActionResult> ConfirmEMail(Guid id)
-        //{
-        //    var guid = await mediator.Send(new ConfirmEmailCommand() { ConfirmationId = id });
+        [HttpPost]
+        [Route("Confirm")]
+        public async Task<IActionResult> ConfirmEMail(Guid id)
+        {
+            var guid = await mediator.Send(new ConfirmEmailCommand() { ConfirmationId = id });
 
-        //    return Ok(guid);
-        //}
+            return Ok(guid);
+        }
 
-        //[HttpPost]
-        //[Route("ChangePassword")]
-        //[Authorize]
-        //public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
-        //{
-        //    if (!command.UserId.HasValue)
-        //        command.UserId = UserId;
+        [HttpPost]
+        [Route("ChangePassword")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
+        {
+            if (!command.UserId.HasValue)
+                command.UserId = UserId;
 
-        //    var guid = await mediator.Send(command);
+            var guid = await mediator.Send(command);
 
-        //    return Ok(guid);
-        //}
+            return Ok(guid);
+        }
     }
 }

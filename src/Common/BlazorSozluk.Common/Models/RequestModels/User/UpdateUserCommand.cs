@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorSozluk.Common.Models.RequestModels
+namespace BlazorSozluk.Common.Models.RequestModels.User
 {
     public class UpdateUserCommand : IRequest<Guid>
     {

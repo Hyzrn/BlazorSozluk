@@ -32,7 +32,7 @@ namespace BlazorSozluk.Common.Infrastructure
 
         public static EventingBasicConsumer CreateBasicConsumer()
         {
-            var factory = new ConnectionFactory() { HostName = Constants.RabbitMQHost };
+            var factory = new ConnectionFactory() { HostName = RabbitMqConstants.RabbitMQHost };
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
 
@@ -41,7 +41,7 @@ namespace BlazorSozluk.Common.Infrastructure
 
         public static EventingBasicConsumer EnsureExchange(this EventingBasicConsumer consumer,
                                                            string exchangeName,
-                                                           string exchangeType = Constants.DefaultExchangeType)
+                                                           string exchangeType = RabbitMqConstants.DefaultExchangeType)
         {
             consumer.Model.ExchangeDeclare(exchange: exchangeName,
                                            type: exchangeType,

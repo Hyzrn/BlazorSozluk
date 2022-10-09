@@ -4,14 +4,8 @@ using BlazorSozluk.Common;
 using BlazorSozluk.Common.Events.User;
 using BlazorSozluk.Common.Infrastructure;
 using BlazorSozluk.Common.Infrastructure.Exceptions;
-using BlazorSozluk.Common.Models.RequestModels;
+using BlazorSozluk.Common.Models.RequestModels.User;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorSozluk.Api.Application.Features.Commands.User.Create
 {
@@ -47,9 +41,9 @@ namespace BlazorSozluk.Api.Application.Features.Commands.User.Create
                     NewEmailAddress = dbUser.EmailAddress,
                 };
 
-                QueueFactory.SendMessageToExchange(exchangeName: Constants.UserExchangeName,
-                    exchangeType: Constants.DefaultExchangeType,
-                    queueName: Constants.UserEmailChangedQueueName,
+                QueueFactory.SendMessageToExchange(exchangeName: RabbitMqConstants.UserExchangeName,
+                    exchangeType: RabbitMqConstants.DefaultExchangeType,
+                    queueName: RabbitMqConstants.UserEmailChangedQueueName,
                     obj: @event);
             }
 

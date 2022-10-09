@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorSozluk.Common.Models.RequestModels
+namespace BlazorSozluk.Common.Models.RequestModels.User
 {
     public class CreateUserCommand : IRequest<Guid>
     {
         public string FirstName { get; set; }
-        
+
         public string LastName { get; set; }
 
         public string EmailAddress { get; set; }

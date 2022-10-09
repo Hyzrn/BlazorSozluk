@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorSozluk.Common
 {
-    public class Constants
+    public class RabbitMqConstants
     {
         public const string RabbitMQHost = "localhost";
         public const string DefaultExchangeType = "direct";
